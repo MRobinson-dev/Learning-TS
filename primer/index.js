@@ -1,7 +1,8 @@
-// Javascript Primer - 4.5 Using Modules - 4.5.4 Exporting and Importing Named features from Modules
-// lisitng 4.31 Importing a default feature in the index.js file in the primer folder
+// Javascript Primer - 4.5.5 Defining multiple named features in a module
+// lisitng 4.32 The contents of the utils.js file in the primer folder
 
-import calcTaxAndSum, {calculateTax} from './tax.js';
+import calcTaxAndSum, { calculateTax } from './tax.js';
+import { printDetails, applyDiscount } from "./utils.js";
 
 class Product {
   constructor(name, price) {
@@ -12,9 +13,11 @@ class Product {
 }
 
 let product = new Product("Hat", 100);
+applyDiscount(product, 10);
+
  
-let taxedPrice = calculateTax(product.price);
-console.log(`Name: ${product.name}, Taxed Price: ${taxedPrice}`);
+//let taxedPrice = calculateTax(product.price);
+printDetails(product);
 
 let products = [new Product("Gloves", 23), new Product("Boots", 100)];
 let totalPrice = calcTaxAndSum(...products.map(p => p.price));
