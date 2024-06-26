@@ -1,43 +1,24 @@
-// using classes in JavaSCript 4.16
+// Javascript Primer - 4.5.5 Defining multiple named features in a module
+// lisitng 4.32 The contents of the utils.js file in the primer folder
+
+import calcTaxAndSum, { calculateTax } from './tax.js';
+import { printDetails, applyDiscount } from "./utils.js";
+
 class Product {
   constructor(name, price) {
+    this.id = Symbol();
     this.name = name;
     this.price = price;
   }
-  toString() {
-    return `toSTring: Name: ${this.name}, Price: ${this.price}`;
-  }
 }
 
-function createProductIterator() {
-  const hat = new Product("Hat", 100);
-  const boots = new Product("Boots", 100);
-  const umbrella = new Product("Umbrella", 23);
+let product = new Product("Hat", 100);
+applyDiscount(product, 10);
 
-  let lastVal;
+ 
+//let taxedPrice = calculateTax(product.price);
+printDetails(product);
 
-  return {
-    next() {
-      switch (lastVal) {
-        case undefined:
-          lastVal = hat;
-          return { value: hat, done: false };
-        case hat:
-          lastVal = boots;
-          return { value: boots, done: false };
-        case boots:
-          lastVal = umbrella;
-          return { value: umbrella, done: false };
-        case umbrella:
-          return { value: undefined, done: true };
-      }
-    }
-  }
-}
-
-let iterator = createProductIterator();
-let result = iterator.next();
-while (!result.done) {
-  console.log(result.value.toString());
-  result = iterator.next();
-}
+let products = [new Product("Gloves", 23), new Product("Boots", 100)];
+let totalPrice = calcTaxAndSum(...products.map(p => p.price));
+console.log(`Total Price: ${totalPrice.toFixed(2)}`);
