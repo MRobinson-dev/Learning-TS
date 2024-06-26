@@ -1,6 +1,6 @@
-// Javascript Primer - 4.4.2 Storing data by key using a map
-// lisitng 4.23 Using symbol values as keys in the index.js file in the primer folder
-
+// Javascript Primer - 4.4.4 Storing data by index
+// lisitng 4.23 Using a set in the index.js file in the primer folder
+4
 class Product {
   constructor(name, price) {
     this.id = Symbol();
@@ -9,22 +9,15 @@ class Product {
   }
 }
 
-class Supplier {
-  constructor(name, productids) {
-    this.name = name;
-    this.productids = productids;
-  }
+let product = new Product("Hat", 100);
+ 
+let productArray = [];
+let productSet = new Set();
+
+for (let i = 0; i < 5; i++){
+  productArray.push(product);
+  productSet.add(product);
 }
 
-let acmeProducts = [new Product("Hat", 100), new Product("Boots", 100)];
-let zoomProducts = [new Product("Hat", 100), new Product("Boots", 100)];
-
-let products = new Map();
-
-[...acmeProducts, ...zoomProducts].forEach(p => products.set(p.id, p));
-let suppliers = new Map();
-suppliers.set("acme", new Supplier("Acme Co", acmeProducts.map(p => p.id)));
-suppliers.set("zoom", new Supplier("Zoom Shoes", zoomProducts.map(p => p.id)));
-
-suppliers.get("acme").productids.forEach(id => console.log(products.get(id).name));
-
+console.log(`Array length: ${productArray.length}`);
+console.log(`Set size: ${productSet.size}`);
