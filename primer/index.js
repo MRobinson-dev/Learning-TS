@@ -1,4 +1,4 @@
-// using classes in JavaSCript 4.15
+// using classes in JavaSCript 4.16
 class Product {
   constructor(name, price) {
     this.name = name;
@@ -9,32 +9,35 @@ class Product {
   }
 }
 
+function createProductIterator() {
+  const hat = new Product("Hat", 100);
+  const boots = new Product("Boots", 100);
+  const umbrella = new Product("Umbrella", 23);
 
-class TaxedProduct extends Product {
-  constructor(name, price, taxRate = 1.2) {
-    super(name, price);
-    this.taxRate = taxRate;
-  }
+  let lastVal;
 
-  getPriceIncTax() {
-    return Number(this.price) * this.taxRate;
+  return {
+    next() {
+      switch (lastVal) {
+        case undefined:
+          lastVal = hat;
+          return { value: hat, done: false };
+        case hat:
+          lastVal = boots;
+          return { value: boots, done: false };
+        case boots:
+          lastVal = umbrella;
+          return { value: umbrella, done: false };
+        case umbrella:
+          return { value: undefined, done: true };
+      }
+    }
   }
-  
-  toString() {
-    let chainResult = super.toString();
-    return `${chainResult}, ${this.#getDetail()}`
-  }
-
-  #getDetail() {
-    return `Tax: ${this.getPriceIncTax()}`;
-  }
-
 }
 
-let hat = new TaxedProduct("Hat", 100);
-let boots = new TaxedProduct("boots", 100, 1.3);
-
-console.log(hat.toString());
-console.log(boots.toString());
-
-
+let iterator = createProductIterator();
+let result = iterator.next();
+while (!result.done) {
+  console.log(result.value.toString());
+  result = iterator.next();
+}
