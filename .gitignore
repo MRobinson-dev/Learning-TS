@@ -1,3 +1,2 @@
 # dependencies
-todo/node_modules
-tools/node_modules
+**/node_modules
