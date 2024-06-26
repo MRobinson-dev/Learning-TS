@@ -1,5 +1,5 @@
-// Javascript Primer - 4.5 Using Modules - 4.5.1 Declaring the Module Type
-// lisitng 4.25 Setting the module type in the package.json file - 4.29 named export
+// Javascript Primer - 4.5 Using Modules - 4.5.4 Exporting and Importing Named features from Modules
+// lisitng 4.30 Exporting named and default features
 
 import {calculateTax} from './tax.js';
 
