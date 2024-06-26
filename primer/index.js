@@ -37,5 +37,4 @@ let boots = new TaxedProduct("boots", 100, 1.3);
 console.log(hat.toString());
 console.log(boots.toString());
 
-console.log(boots.#getDetail());
 
