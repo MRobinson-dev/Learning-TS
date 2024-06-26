@@ -1,5 +1,5 @@
-// Javascript Primer - 4.3.2 Defining Iterable Objects
-// lisitng 4.21 - Using an object as a Collection
+// Javascript Primer - 4.4.2 Storing data by key using a map
+// lisitng 4.22 Using a map in the index.js file in the primer folder
 
 class Product {
   constructor(name, price) {
@@ -12,10 +12,8 @@ class Product {
   }
 }
 
-let data = {
-  hat: new Product("Hat", 100)
-}
+let data = new Map();
+data.set("Hat", new Product("Hat", 100));
+data.set("Boots", new Product("Boots", 100));
 
-data.boots = new Product("Boots", 100);
-
-Object.keys(data).forEach(key => console.log(data[key].toString()));
+[...data.keys()].forEach(key => console.log(data.get(key).toString()));
